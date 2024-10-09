@@ -8,12 +8,18 @@ let firstCard = 0;
 let secondCard = 0;
 let hasBlackJack = false; // to track if a player has won
 let isAlive = true; // to track if a player has lost
+let message = [
+  " Do you want to draw again?",
+  " Blackjack! You win!",
+  " You lose! Game over",
+];
 
 //get the element from the DOM
 let num1 = document.getElementById("num1");
 let num2 = document.getElementById("num2");
 let sumEl = document.getElementById("sum");
 let messageEl = document.getElementById("message");
+let startButton = document.getElementById("start");
 
 // update the display
 num1.textContent += firstCard;
@@ -34,13 +40,15 @@ function draw() {
   // 3. If sum is 21, display Black Jack. Get as close to 21 as possible. But if > 21, you lose
 
   if (sum < 21) {
-    // sumEl.textContent += sum;
-    messageEl.textContent += " Do you want to draw again?";
+    messageEl.textContent += message[0];
+    startButton.textContent = "Try again";
   } else if (sum === 21) {
-    messageEl.textContent += " Blackjack! You win!";
+    messageEl.textContent += message[1];
     hasBlackJack = true;
+    startButton.textContent = "Play again";
   } else {
-    messageEl.textContent += " You lose! Game over";
+    messageEl.textContent += message[2];
+    startButton.textContent = "Play new game";
     isAlive = false;
     // reset();
   }
