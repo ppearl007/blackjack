@@ -6,6 +6,8 @@
 //initialize the variables
 let firstCard = 0;
 let secondCard = 0;
+let hasBlackJack = false; // to track if a player has won
+let isAlive = true; // to track if a player has lost
 
 //get the element from the DOM
 let num1 = document.getElementById("num1");
@@ -35,9 +37,12 @@ function draw() {
     // sumEl.textContent += sum;
     messageEl.textContent += " Do you want to draw again?";
   } else if (sum === 21) {
-    messageEl.textContent += " Blackjack! 🥳";
+    messageEl.textContent += " Blackjack! You win!";
+    hasBlackJack = true;
   } else {
-    messageEl.textContent += " You lose! 😭";
+    messageEl.textContent += " You lose! Game over";
+    isAlive = false;
+    // reset();
   }
 }
 
@@ -50,5 +55,5 @@ function reset() {
   num1.textContent = "First Card: " + firstCard;
   num2.textContent = "Second Card: " + secondCard;
   sumEl.textContent = "Sum: " + sum;
-  messageEl.textContent = "";
+  messageEl.textContent = "Want to play a round?";
 }

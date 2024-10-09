@@ -1,16 +1,17 @@
 <html>
-    <head>
-    </head>
-    <body>
-        <header>
-            Black Jack
-        </header>
-        <p id="num1"> First Card: </p>
-        <p id="num2"> Second Card: </p>
-        <p id="sum"> Sum: </p>
-        <p id="message"> </p>
-        <button onclick="draw()"> Draw </button>
-        <button onclick="reset()"> Clear </button>
-        <script src="index.js"></script>
-    </body>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1>Black Jack</h1>
+    <p id="message">Want to play a round?</p>
+    <button onclick="draw()">Draw</button>
+    <div class="cards">
+      <p id="num1">First Card:</p>
+      <p id="num2">Second Card:</p>
+    </div>
+    <p id="sum">Sum:</p>
+    <button onclick="reset()">Clear</button>
+    <script src="index.js"></script>
+  </body>
 </html>
