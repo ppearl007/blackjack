@@ -35,12 +35,13 @@ function adder() {
 }
 
 function draw() {
+  reset();
   // draw two cards i.e. two random numbers
   cards[0] = getRandomCard();
   cards[1] = getRandomCard();
   num1.textContent = "First Card: " + cards[0];
   num2.textContent = "Second Card: " + cards[1];
-
+  console.log(cards);
   // 2. Create a variable, sum, and set it to the sum of the two cards
   let sum = adder();
   sumEl.textContent = "Sum: " + sum;
@@ -88,16 +89,16 @@ if (!isAlive || hasBlackJack) {
 }
 
 function reset() {
-  firstCard = 0;
-  secondCard = 0;
-  thirdCard = 0;
+  cards = [0, 0];
   sum = 0;
 
-  num1.textContent = "First Card: " + firstCard;
-  num2.textContent = "Second Card: " + secondCard;
-  num3.textContent = "Third Card: " + thirdCard;
+  num1.textContent = "First Card: " + cards[0];
+  num2.textContent = "Second Card: " + cards[1];
+  num3.textContent = "Third Card: ";
   sumEl.textContent = "Sum: " + sum;
   messageEl.textContent = "Want to play a round?";
+  startButton.textContent = "Play new game";
+  endEl.textContent = "";
 }
 
 let getRandomCard = () => Math.floor(Math.random() * 11) + 2;
