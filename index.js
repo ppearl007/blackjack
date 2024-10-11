@@ -12,6 +12,7 @@ let message = [
   " Do you want to draw again?",
   " Blackjack! You win!",
   " You lose! Game over",
+  "No more tries",
 ];
 let cards = [firstCard, secondCard];
 
@@ -22,6 +23,7 @@ let num3 = document.getElementById("num3");
 let sumEl = document.getElementById("sum-el");
 let messageEl = document.getElementById("message-el");
 let startButton = document.getElementById("start");
+let endEl = document.getElementById("end-el");
 
 // update the display
 num1.textContent += cards[0];
@@ -36,10 +38,8 @@ function draw() {
   // draw two cards i.e. two random numbers
   cards[0] = getRandomCard();
   cards[1] = getRandomCard();
-  cards[2] = 0;
   num1.textContent = "First Card: " + cards[0];
   num2.textContent = "Second Card: " + cards[1];
-  num3.textContent = "Third Card: " + cards[2];
 
   // 2. Create a variable, sum, and set it to the sum of the two cards
   let sum = adder();
@@ -51,13 +51,17 @@ function draw() {
 
 //new Card
 function newCard() {
-  if (isAlive === true && hasBlackJack === false) {
-    thirdCard = Math.floor(Math.random() * 11) + 2;
+  if (isAlive === true && hasBlackJack === false && cards.length < 3) {
+    thirdCard = getRandomCard();
     num3.textContent = "Third Card: " + thirdCard;
     cards.push(thirdCard);
+    console.log(cards);
     sum = adder();
     sumEl.textContent = "Sum: " + sum;
     sumChecker(sum);
+  } else {
+    endEl.textContent = message[3];
+    isAlive = false;
   }
 }
 
@@ -79,7 +83,7 @@ function sumChecker(sum) {
 }
 
 //clean up function
-if (!isAlive) {
+if (!isAlive || hasBlackJack) {
   reset();
 }
 
