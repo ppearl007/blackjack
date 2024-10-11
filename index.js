@@ -34,8 +34,8 @@ function adder() {
 
 function draw() {
   // draw two cards i.e. two random numbers
-  cards[0] = Math.floor(Math.random() * 11) + 2;
-  cards[1] = Math.floor(Math.random() * 11) + 2;
+  cards[0] = getRandomCard();
+  cards[1] = getRandomCard();
   cards[2] = 0;
   num1.textContent = "First Card: " + cards[0];
   num2.textContent = "Second Card: " + cards[1];
@@ -51,12 +51,14 @@ function draw() {
 
 //new Card
 function newCard() {
-  thirdCard = Math.floor(Math.random() * 11) + 2;
-  num3.textContent = "Third Card: " + thirdCard;
-  cards.push(thirdCard);
-  sum = adder();
-  sumEl.textContent = "Sum: " + sum;
-  sumChecker(sum);
+  if (isAlive === true && hasBlackJack === false) {
+    thirdCard = Math.floor(Math.random() * 11) + 2;
+    num3.textContent = "Third Card: " + thirdCard;
+    cards.push(thirdCard);
+    sum = adder();
+    sumEl.textContent = "Sum: " + sum;
+    sumChecker(sum);
+  }
 }
 
 // 3. If sum is 21, display Black Jack. Get as close to 21 as possible. But if > 21, you lose
@@ -93,3 +95,5 @@ function reset() {
   sumEl.textContent = "Sum: " + sum;
   messageEl.textContent = "Want to play a round?";
 }
+
+let getRandomCard = () => Math.floor(Math.random() * 11) + 2;
